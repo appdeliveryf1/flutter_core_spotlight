@@ -11,6 +11,7 @@ class FlutterSpotlightItem {
     required this.domainIdentifier,
     required this.attributeTitle,
     required this.attributeDescription,
+    this.thumbnailURL,
   });
 
   factory FlutterSpotlightItem.fromJson(String source) =>
@@ -22,6 +23,7 @@ class FlutterSpotlightItem {
       domainIdentifier: map['domainIdentifier'],
       attributeTitle: map['attributeTitle'],
       attributeDescription: map['attributeDescription'],
+      thumbnailURL: map['thumbnailURL'],
     );
   }
 
@@ -29,13 +31,14 @@ class FlutterSpotlightItem {
   final String attributeTitle;
   final String domainIdentifier;
   final String uniqueIdentifier;
-
+  final String? thumbnailURL;
   Map<String, dynamic> toMap() {
     return {
       'uniqueIdentifier': uniqueIdentifier,
       'domainIdentifier': domainIdentifier,
       'attributeTitle': attributeTitle,
       'attributeDescription': attributeDescription,
+      'thumbnailURL': thumbnailURL,
     };
   }
 

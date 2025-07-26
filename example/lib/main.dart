@@ -63,6 +63,8 @@ class _MyAppState extends State<MyApp> {
                       domainIdentifier: 'com.example.flutter_spotlight_plugin',
                       attributeTitle: _textController.text,
                       attributeDescription: 'This is an example description',
+                      thumbnailURL:
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4YreOWfDX3kK-QLAbAL4ufCPc84ol2MA8Xg&s',
                     )
                   ]);
                 },

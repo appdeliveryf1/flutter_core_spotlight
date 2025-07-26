@@ -26,7 +26,9 @@ public class SwiftFlutterCoreSpotlightPlugin: NSObject, FlutterPlugin {
         let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
         attributeSet.title = itemMap["attributeTitle"] as? String
         attributeSet.contentDescription = itemMap["attributeDescription"] as? String
-        
+        if let icon = itemMap["thumbnailURL"] as? String, let url = URL(string: icon) {
+          attributeSet.thumbnailURL = url
+        }
         let item = CSSearchableItem(uniqueIdentifier: "\(itemMap["uniqueIdentifier"] as? String ?? "")",
                                     domainIdentifier: itemMap["domainIdentifier"] as? String ?? "",
                                     attributeSet: attributeSet)
