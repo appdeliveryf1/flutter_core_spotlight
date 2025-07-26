@@ -2,8 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_core_spotlight/flutter_core_spotlight.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:flutter_native_alert/flutter_native_alert.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,17 +18,18 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    super.initState();
     FlutterCoreSpotlight.instance.configure(
       onSearchableItemSelected: (userActivity) {
         print(userActivity);
-        FlutterNativeAlert.getInstance().showConfirm(
-          title: userActivity?.uniqueIdentifier ?? 'Unknown title',
-          message: jsonEncode(userActivity?.userInfo ?? {}),
-          confirmButtonText: 'OK',
+        Fluttertoast.showToast(
+          msg: 'Selected: ${userActivity?.uniqueIdentifier ?? 'Unknown'}',
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 3,
         );
       },
     );
-    super.initState();
   }
 
   @override
@@ -53,6 +53,10 @@ class _MyAppState extends State<MyApp> {
               child: ElevatedButton(
                 child: Text('Index'),
                 onPressed: () {
+                  if (_textController.text.trim().isEmpty) {
+                    Fluttertoast.showToast(msg: 'Please enter a value');
+                    return;
+                  }
                   FlutterCoreSpotlight.instance.indexSearchableItems([
                     FlutterSpotlightItem(
                       uniqueIdentifier: _textController.text,
